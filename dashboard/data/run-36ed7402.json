@@ -1,0 +1,17 @@
+[
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "lette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED test_witness_lane_L1.py::test_invalid_order_rejected_via_all_routes - ...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 1 warning in 0.49s\n",
+    "elapsed_s": 1.9220000000059372,
+    "death_note": "Proof test selected for guarantee G3"
+  }
+]

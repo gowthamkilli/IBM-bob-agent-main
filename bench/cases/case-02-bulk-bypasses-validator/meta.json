@@ -1,0 +1,11 @@
+{
+  "case": "case-02-bulk-bypasses-validator",
+  "description": "Bulk-insert route writes orders directly to DB without calling validate_order(), defeating G3",
+  "guarantee_id": "G3",
+  "branch_a": "team-c/bulk-endpoint",
+  "branch_b": "team-c/bulk-endpoint",
+  "base": "e8a72c4",
+  "head": "team-c/bulk-endpoint",
+  "mechanism": "bypass",
+  "expected_verdict": "PROVEN"
+}

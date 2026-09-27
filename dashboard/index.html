@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Witness Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Witness</h1>
+    <p class="subtitle">Pre-merge gate &amp; standing code auditor</p>
+    <div id="run-meta"></div>
+  </header>
+
+  <main>
+    <section id="section-ledger">
+      <h2>Purpose Ledger</h2>
+      <p class="section-desc">Documented guarantees extracted from ADRs, docstrings, and test names.</p>
+      <table id="ledger-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Guarantee</th>
+            <th>Provenance</th>
+            <th>Covered by test?</th>
+          </tr>
+        </thead>
+        <tbody id="ledger-body"></tbody>
+      </table>
+    </section>
+
+    <section id="section-branches">
+      <h2>Branches</h2>
+      <div id="branches-list"></div>
+    </section>
+
+    <section id="section-lanes">
+      <h2>Race Lanes</h2>
+      <p class="section-desc">Five lanes run concurrently. Each produces a verdict.</p>
+      <div id="lanes-container"></div>
+    </section>
+
+    <section id="section-split">
+      <h2>Proof Split</h2>
+      <p class="section-desc">The winning lane: base=PASS (green), head=FAIL (red).</p>
+      <div id="split-view">
+        <div class="split-side" id="split-base">
+          <h3>Base <span class="badge badge-pass">PASS</span></h3>
+          <pre id="split-base-output"></pre>
+        </div>
+        <div class="split-side" id="split-head">
+          <h3>Head <span class="badge badge-fail">FAIL</span></h3>
+          <pre id="split-head-output"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-findings">
+      <h2>Findings</h2>
+      <div id="findings-defeated"></div>
+      <div id="findings-undefended"></div>
+    </section>
+
+    <section id="section-bench">
+      <h2>Benchmark</h2>
+      <table id="bench-table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Guarantee</th>
+            <th>Green alone?</th>
+            <th>Textual conflict?</th>
+            <th>Suite caught it?</th>
+            <th>Verdict</th>
+            <th>Proof test</th>
+          </tr>
+        </thead>
+        <tbody id="bench-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Replay mode — no agent calls, no network. Data from <code>dashboard/data/</code>.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

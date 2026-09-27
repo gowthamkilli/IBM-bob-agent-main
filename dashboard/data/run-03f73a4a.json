@@ -1,0 +1,17 @@
+[
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "PASS",
+    "verdict": "DISPROVEN",
+    "stderr_excerpt": "::test_single_order_results_in_at_most_one_gateway_charge\n  /Users/jitinvarma/miniconda3/lib/python3.14/site-packages/pytest_asyncio/plugin.py:1001: DeprecationWarning: 'asyncio.get_event_loop_policy' is deprecated and slated for removal in Python 3.16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 34 warnings in 0.01s\n",
+    "elapsed_s": 0.22908933297730982,
+    "death_note": "If _do_charge monkeypatching fails the count may not register"
+  }
+]

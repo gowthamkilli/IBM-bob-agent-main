@@ -1,0 +1,17 @@
+[
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "PASS",
+    "verdict": "DISPROVEN",
+    "stderr_excerpt": ".                                                                        [100%]\n1 passed in 0.02s\n.                                                                        [100%]\n1 passed in 0.02s\n",
+    "elapsed_s": 0.9689999999973224,
+    "death_note": "Proof test selected for guarantee G1"
+  }
+]

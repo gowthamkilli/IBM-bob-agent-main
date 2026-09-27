@@ -1,0 +1,159 @@
+{
+  "run_id": "demo-20260925",
+  "mode": "gate",
+  "base_sha": "a4477c4",
+  "head_sha": "db61b21",
+  "branches": ["team-a/rate-limit", "team-b/retry"],
+  "ledger": [
+    {
+      "id": "G1",
+      "statement": "a single order request results in at most one gateway charge call",
+      "why": "the payment provider bills per API call and rate-limits us",
+      "provenance": ["docs/ADR-001.md:15", "app/gateway.py:14"],
+      "enforced_at": ["app/limiter.py:44"],
+      "covered_by_test": null,
+      "surface": ["app.gateway.charge", "POST /orders"]
+    },
+    {
+      "id": "G2",
+      "statement": "the same idempotency key creates exactly one order",
+      "why": "clients may retry on network failure; we must not double-charge",
+      "provenance": ["docs/ADR-002.md:16", "app/orders.py:8"],
+      "enforced_at": ["app/orders.py:58"],
+      "covered_by_test": "tests/test_orders.py::test_duplicate_submit_creates_one_record",
+      "surface": ["app.orders.create_order", "POST /orders"]
+    },
+    {
+      "id": "G3",
+      "statement": "every order write passes through validate_order()",
+      "why": "validate_order() is the single enforcement point for business rules",
+      "provenance": ["docs/ADR-003.md:16", "app/orders.py:12"],
+      "enforced_at": ["app/orders.py:65"],
+      "covered_by_test": null,
+      "surface": ["app.orders.validate_order", "POST /orders"]
+    },
+    {
+      "id": "G4",
+      "statement": "catalog reads are served from cache; DB hit rate < 20% once warm",
+      "why": "the catalog changes infrequently; hitting the DB on every read adds latency",
+      "provenance": ["docs/ADR-004.md:17", "app/cache.py:8"],
+      "enforced_at": ["app/cache.py:29"],
+      "covered_by_test": null,
+      "surface": ["app.cache.get_item", "GET /catalog"]
+    }
+  ],
+  "candidates": [
+    {
+      "id": "C1",
+      "claim": "Merging team-b/retry into team-a/rate-limit defeats guarantee G1",
+      "guarantee_id": "G1",
+      "fallacy_class": null,
+      "proof_form": "differential",
+      "test_style": "guarantee",
+      "rank_score": 1.0
+    }
+  ],
+  "lanes": [
+    {
+      "lane_id": "L1",
+      "candidate_id": "C1",
+      "test_path": "test_witness_lane_L1.py",
+      "expected_failure": {"exception": "AssertionError", "assert_substring": "G1 VIOLATED"},
+      "base_result": "PASS",
+      "head_result": "FAIL",
+      "verdict": "PROVEN",
+      "stderr_excerpt": "FAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge - AssertionError: G1 VIOLATED: 2 gateway charge attempts (ceiling=1)",
+      "elapsed_s": 0.31,
+      "death_note": "If _do_charge is not monkeypatched the count may not register"
+    },
+    {
+      "lane_id": "L2",
+      "candidate_id": "C2",
+      "test_path": "test_witness_lane_L2.py",
+      "expected_failure": {"exception": null, "assert_substring": "idempotency"},
+      "base_result": "PASS",
+      "head_result": "PASS",
+      "verdict": "DISPROVEN",
+      "stderr_excerpt": "1 passed",
+      "elapsed_s": 0.18,
+      "death_note": "G2 not affected by this merge"
+    },
+    {
+      "lane_id": "L3",
+      "candidate_id": "C3",
+      "test_path": "test_witness_lane_L3.py",
+      "expected_failure": {"exception": null, "assert_substring": "validate_order"},
+      "base_result": "PASS",
+      "head_result": "PASS",
+      "verdict": "DISPROVEN",
+      "stderr_excerpt": "1 passed",
+      "elapsed_s": 0.14,
+      "death_note": "G3 not touched by this merge"
+    },
+    {
+      "lane_id": "L4",
+      "candidate_id": "C4",
+      "test_path": "test_witness_lane_L4.py",
+      "expected_failure": {"exception": null, "assert_substring": "cache"},
+      "base_result": "PASS",
+      "head_result": "PASS",
+      "verdict": "DISPROVEN",
+      "stderr_excerpt": "1 passed",
+      "elapsed_s": 0.11,
+      "death_note": "G4 not touched by this merge"
+    },
+    {
+      "lane_id": "L5",
+      "candidate_id": "C5",
+      "test_path": "test_witness_lane_L5.py",
+      "expected_failure": {"exception": "AssertionError", "assert_substring": "unguarded"},
+      "base_result": "PASS",
+      "head_result": "PASS",
+      "verdict": "DISPROVEN",
+      "stderr_excerpt": "1 passed",
+      "elapsed_s": 0.09,
+      "death_note": "Unguarded call site not exploitable by this merge"
+    }
+  ],
+  "findings": {
+    "defeated": [
+      {
+        "guarantee_id": "G1",
+        "statement": "a single order request results in at most one gateway charge call",
+        "why": "the payment provider bills per API call and rate-limits us",
+        "provenance": ["docs/ADR-001.md:15"],
+        "claim": "Merging team-b/retry into team-a/rate-limit defeats guarantee G1 — retries multiply gateway calls beneath the route-level ceiling",
+        "test_path": "test_witness_lane_L1.py"
+      }
+    ],
+    "undefended": [
+      {
+        "guarantee_id": "G3",
+        "statement": "every order write passes through validate_order()",
+        "provenance": ["docs/ADR-003.md:16"],
+        "why": "validate_order() is the single enforcement point for business rules"
+      },
+      {
+        "guarantee_id": "G4",
+        "statement": "catalog reads are served from cache; DB hit rate < 20% once warm",
+        "provenance": ["docs/ADR-004.md:17"],
+        "why": "the catalog changes infrequently"
+      }
+    ],
+    "disproven": [
+      {"candidate_id": "C2", "claim": "G2 idempotency not affected"},
+      {"candidate_id": "C3", "claim": "G3 validation not touched by this merge"},
+      {"candidate_id": "C4", "claim": "G4 cache not touched by this merge"},
+      {"candidate_id": "C5", "claim": "Unguarded call site not exploitable"}
+    ]
+  },
+  "metrics": {
+    "wall_clock_s": 1.83,
+    "lanes_total": 5,
+    "lanes_proven": 1,
+    "lanes_disproven": 4,
+    "lanes_inconclusive": 0,
+    "lanes_invalid": 0
+  },
+  "bench": []
+}

@@ -1,0 +1,169 @@
+{
+  "run_id": "290afe45",
+  "mode": "gate",
+  "base_sha": "e8a72c4",
+  "head_sha": "team-c/bulk-endpoint",
+  "branches": [
+    "e8a72c4",
+    "team-c/bulk-endpoint"
+  ],
+  "ledger": [
+    {
+      "id": "G1",
+      "statement": "a single order request results in at most one gateway charge call",
+      "why": "the payment provider bills per API call and rate-limits us",
+      "provenance": [
+        "docs/ADR-001.md:14"
+      ],
+      "enforced_at": [],
+      "covered_by_test": null,
+      "surface": [
+        "app.gateway.charge",
+        "POST /orders"
+      ]
+    },
+    {
+      "id": "G2",
+      "statement": "the same idempotency key creates exactly one order",
+      "why": "clients may retry on network failure; we must not double-charge",
+      "provenance": [
+        "docs/ADR-002.md:13",
+        "app/orders.py:4"
+      ],
+      "enforced_at": [
+        "app/orders.py:60"
+      ],
+      "covered_by_test": "tests\\test_orders.py::test_duplicate_submit_creates_one_record",
+      "surface": [
+        "app.orders.create_order",
+        "POST /orders"
+      ]
+    },
+    {
+      "id": "G3",
+      "statement": "every order write passes through validate_order()",
+      "why": "validate_order() is the single enforcement point for business rules",
+      "provenance": [
+        "docs/ADR-003.md:14",
+        "app/orders.py:9"
+      ],
+      "enforced_at": [
+        "app/orders.py:23"
+      ],
+      "covered_by_test": null,
+      "surface": [
+        "app.orders.validate_order",
+        "POST /orders",
+        "POST /orders/bulk"
+      ]
+    },
+    {
+      "id": "G4",
+      "statement": "catalog reads are served from cache; DB hit rate < 20% once warm",
+      "why": "the catalog changes infrequently; hitting the DB on every read adds latency",
+      "provenance": [
+        "docs/ADR-004.md:14",
+        "app/cache.py:4"
+      ],
+      "enforced_at": [
+        "app/cache.py:20"
+      ],
+      "covered_by_test": null,
+      "surface": [
+        "app.cache.get_item",
+        "GET /catalog"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "id": "C2",
+      "claim": "This change nones the enforcement of a single order request results in at most one gateway charge call",
+      "guarantee_id": "G1",
+      "fallacy_class": null,
+      "proof_form": "differential",
+      "test_style": "guarantee",
+      "rank_score": 1.0
+    },
+    {
+      "id": "C3",
+      "claim": "This change nones the enforcement of every order write passes through validate_order()",
+      "guarantee_id": "G3",
+      "fallacy_class": null,
+      "proof_form": "differential",
+      "test_style": "guarantee",
+      "rank_score": 1.0
+    },
+    {
+      "id": "C3",
+      "claim": "Call to app.gateway.charge at app/orders.py:79 has no guard",
+      "guarantee_id": null,
+      "fallacy_class": "defeated-enforcement",
+      "proof_form": "impossibility",
+      "test_style": "equivalence",
+      "rank_score": 0.5
+    }
+  ],
+  "lanes": [
+    {
+      "lane_id": "L1",
+      "candidate_id": "C1",
+      "test_path": "test_witness_lane_L1.py",
+      "expected_failure": {
+        "exception": "AssertionError",
+        "assert_substring": ""
+      },
+      "base_result": "PASS",
+      "head_result": "PASS",
+      "verdict": "DISPROVEN",
+      "stderr_excerpt": ".                                                                        [100%]\n1 passed in 0.02s\n.                                                                        [100%]\n1 passed in 0.03s\n",
+      "elapsed_s": 0.9529999999940628,
+      "death_note": "Proof test selected for guarantee G1"
+    }
+  ],
+  "findings": {
+    "defeated": [],
+    "undefended": [
+      {
+        "guarantee_id": "G1",
+        "statement": "a single order request results in at most one gateway charge call",
+        "provenance": [
+          "docs/ADR-001.md:14"
+        ],
+        "why": "the payment provider bills per API call and rate-limits us"
+      },
+      {
+        "guarantee_id": "G3",
+        "statement": "every order write passes through validate_order()",
+        "provenance": [
+          "docs/ADR-003.md:14",
+          "app/orders.py:9"
+        ],
+        "why": "validate_order() is the single enforcement point for business rules"
+      },
+      {
+        "guarantee_id": "G4",
+        "statement": "catalog reads are served from cache; DB hit rate < 20% once warm",
+        "provenance": [
+          "docs/ADR-004.md:14",
+          "app/cache.py:4"
+        ],
+        "why": "the catalog changes infrequently; hitting the DB on every read adds latency"
+      }
+    ],
+    "disproven": [
+      {
+        "candidate_id": "C1",
+        "claim": ""
+      }
+    ]
+  },
+  "metrics": {
+    "wall_clock_s": 1.7810000000026776,
+    "lanes_total": 1,
+    "lanes_proven": 0,
+    "lanes_disproven": 1,
+    "lanes_inconclusive": 0,
+    "lanes_invalid": 0
+  }
+}

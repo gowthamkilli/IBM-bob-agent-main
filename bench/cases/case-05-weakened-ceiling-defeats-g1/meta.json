@@ -1,0 +1,11 @@
+{
+  "case": "case-05-weakened-ceiling-defeats-g1",
+  "description": "Raising G1 ceiling from 1 to 5 in limiter.py weakens the guarantee - ADR-001 requires ceiling=1",
+  "guarantee_id": "G1",
+  "branch_a": "bench/weakened-ceiling-defeats-g1",
+  "branch_b": "bench/weakened-ceiling-defeats-g1",
+  "base": "e8a72c4",
+  "head": "bench/weakened-ceiling-defeats-g1",
+  "mechanism": "weaken",
+  "expected_verdict": "PROVEN"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "al request (ceiling=1). A single order request must result in at most one gateway charge call (docs/ADR-001.md:14).\nE   assert 2 <= 1\n=========================== short test summary info ===========================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed in 0.08s\n",
+    "elapsed_s": 1.0460000000020955,
+    "death_note": "If _do_charge monkeypatching fails the count may not register"
+  }
+]

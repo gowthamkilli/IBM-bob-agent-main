@@ -1,0 +1,6 @@
+{
+  "milestone": "M8",
+  "status": "passed",
+  "next": "DONE",
+  "notes": "All milestones M0-M8 verified and running. sample-repo rebuilt with full git history and all branches. All 6 synthetic benchmark cases PROVEN. witness gate --base 6d6a58e --head team-a/rate-limit --with team-b/retry returns DEFEATED|PROVEN. bench/RESULTS.md filled. Dashboard replay functional. Definition of Done: all 5 items pass."
+}

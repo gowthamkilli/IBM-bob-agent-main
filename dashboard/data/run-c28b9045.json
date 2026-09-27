@@ -1,0 +1,17 @@
+[
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "me item. Once warm, cache must serve reads without hitting DB (docs/ADR-004.md:17). DB hit rate: 100% (max allowed: 20%).\nE   assert 10 == 1\n=========================== short test summary info ===========================\nFAILED test_witness_lane_L1.py::test_cache_serves_warm_reads_without_db - Ass...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed in 0.07s\n",
+    "elapsed_s": 1.0,
+    "death_note": "Proof test selected for guarantee G4"
+  }
+]

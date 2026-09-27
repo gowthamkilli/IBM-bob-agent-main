@@ -1,0 +1,11 @@
+{
+  "case": "case-04-regenerated-idempotency-defeats-dedup",
+  "description": "Regenerating idempotency key on each call defeats G2 deduplication - same logical request creates multiple orders",
+  "guarantee_id": "G2",
+  "branch_a": "bench/regenerated-idempotency-defeats-dedup",
+  "branch_b": "bench/regenerated-idempotency-defeats-dedup",
+  "base": "e8a72c4",
+  "head": "bench/regenerated-idempotency-defeats-dedup",
+  "mechanism": "bypass",
+  "expected_verdict": "PROVEN"
+}

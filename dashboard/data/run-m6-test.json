@@ -1,0 +1,137 @@
+[
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 34 warnings in 0.03s\n",
+    "elapsed_s": 0.2645155409700237,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 34 warnings in 0.02s\n",
+    "elapsed_s": 0.25494283298030496,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 34 warnings in 0.03s\n",
+    "elapsed_s": 0.2589540419867262,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 34 warnings in 0.02s\n",
+    "elapsed_s": 0.2676952080219053,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 34 warnings in 0.03s\n",
+    "elapsed_s": 0.25849991699215025,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 34 warnings in 0.02s\n",
+    "elapsed_s": 0.24942079099128023,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "16\n    return asyncio.get_event_loop_policy()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 34 warnings in 0.02s\n",
+    "elapsed_s": 0.24939224997069687,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "al request (ceiling=1). A single order request must result in at most one gateway charge call (docs/ADR-001.md:14).\nE   assert 2 <= 1\n=========================== short test summary info ===========================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed in 0.07s\n",
+    "elapsed_s": 1.0469999999913853,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  },
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "al request (ceiling=1). A single order request must result in at most one gateway charge call (docs/ADR-001.md:14).\nE   assert 2 <= 1\n=========================== short test summary info ===========================\nFAILED test_witness_lane_L1.py::test_single_order_results_in_at_most_one_gateway_charge\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed in 0.07s\n",
+    "elapsed_s": 1.0630000000091968,
+    "death_note": "If _do_charge is not monkeypatched correctly the count may not register"
+  }
+]

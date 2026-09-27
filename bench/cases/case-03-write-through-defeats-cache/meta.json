@@ -1,0 +1,11 @@
+{
+  "case": "case-03-write-through-defeats-cache",
+  "description": "Write-through pattern in cache.get_item always calls DB, defeating G4 hit rate guarantee",
+  "guarantee_id": "G4",
+  "branch_a": "bench/write-through-defeats-cache",
+  "branch_b": "bench/write-through-defeats-cache",
+  "base": "e8a72c4",
+  "head": "bench/write-through-defeats-cache",
+  "mechanism": "bypass",
+  "expected_verdict": "PROVEN"
+}

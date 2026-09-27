@@ -1,0 +1,11 @@
+{
+  "case": "case-01-retry-defeats-limiter",
+  "description": "Retry-with-backoff (team-b) multiplies gateway calls beneath a route-level ceiling (team-a), defeating G1",
+  "guarantee_id": "G1",
+  "branch_a": "team-a/rate-limit",
+  "branch_b": "team-b/retry",
+  "base": "6d6a58e",
+  "head": "team-a/rate-limit",
+  "mechanism": "multiply",
+  "expected_verdict": "PROVEN"
+}

@@ -1,0 +1,218 @@
+/* Witness Dashboard — style.css
+   Large readable fonts. Clear verdict colors. 1080p legible from across a room.
+   No animations, no gradients, no external assets.
+*/
+
+:root {
+  --bg: #ffffff;
+  --surface: #f7f8fa;
+  --border: #e5e7eb;
+  --text: #1f2328;
+  --muted: #57606a;
+  --accent: #3b82d4;
+  --pass: #22863a;
+  --pass-bg: #dcffe4;
+  --fail: #b31d28;
+  --fail-bg: #ffeef0;
+  --inconclusive: #735c0f;
+  --inconclusive-bg: #fffbdd;
+  --invalid: #57606a;
+  --invalid-bg: #f6f8fa;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  letter-spacing: -0.5px;
+}
+
+header .subtitle {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+#run-meta {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+section {
+  margin-bottom: 48px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+
+h3 { font-size: 1.1rem; margin-bottom: 8px; }
+
+.section-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th {
+  background: var(--surface);
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+
+td {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:nth-child(even) td { background: var(--surface); }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-pass    { background: var(--pass-bg);         color: var(--pass); }
+.badge-fail    { background: var(--fail-bg);          color: var(--fail); }
+.badge-proven  { background: var(--pass-bg);          color: var(--pass); }
+.badge-disproven { background: var(--surface);        color: var(--muted); }
+.badge-inconclusive { background: var(--inconclusive-bg); color: var(--inconclusive); }
+.badge-invalid { background: var(--invalid-bg);       color: var(--invalid); }
+.badge-covered { background: var(--pass-bg);          color: var(--pass); }
+.badge-uncovered { background: var(--fail-bg);        color: var(--fail); }
+
+/* Lane cards */
+#lanes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.lane-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  background: var(--surface);
+}
+
+.lane-card h4 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.lane-card .lane-status {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.lane-card.verdict-proven  { border-color: var(--pass); background: var(--pass-bg); }
+.lane-card.verdict-disproven { border-color: var(--border); }
+.lane-card.verdict-inconclusive { border-color: var(--inconclusive); }
+.lane-card.verdict-invalid { border-color: var(--border); opacity: 0.6; }
+
+/* Split view */
+#split-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.split-side {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+#split-base { border-color: var(--pass); }
+#split-head { border-color: var(--fail); }
+
+pre {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.82rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: var(--surface);
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Findings */
+.finding-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.finding-card.defeated { border-color: var(--fail); background: var(--fail-bg); }
+.finding-card.undefended { border-color: var(--inconclusive); background: var(--inconclusive-bg); }
+
+.finding-card h4 { font-size: 1rem; margin-bottom: 8px; }
+
+.finding-card dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  font-size: 0.9rem;
+}
+
+.finding-card dt { font-weight: 600; color: var(--muted); }
+.finding-card dd { margin: 0; }
+
+code {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.85em;
+  background: var(--surface);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 32px;
+}

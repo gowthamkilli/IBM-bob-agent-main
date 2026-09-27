@@ -1,0 +1,11 @@
+{
+  "case": "case-06-unchecked-fast-path-defeats-g3",
+  "description": "A fast-path /orders/fast route writes directly to DB without validate_order(), defeating G3",
+  "guarantee_id": "G3",
+  "branch_a": "bench/unchecked-fast-path-defeats-g3",
+  "branch_b": "bench/unchecked-fast-path-defeats-g3",
+  "base": "e8a72c4",
+  "head": "bench/unchecked-fast-path-defeats-g3",
+  "mechanism": "bypass",
+  "expected_verdict": "PROVEN"
+}

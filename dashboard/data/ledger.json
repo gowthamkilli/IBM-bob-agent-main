@@ -1,0 +1,68 @@
+[
+  {
+    "id": "G1",
+    "statement": "a single order request results in at most one gateway charge call",
+    "why": "the payment provider bills per API call and rate-limits us",
+    "provenance": [
+      "docs/ADR-001.md:14"
+    ],
+    "enforced_at": [],
+    "covered_by_test": null,
+    "surface": [
+      "app.gateway.charge",
+      "POST /orders"
+    ]
+  },
+  {
+    "id": "G2",
+    "statement": "the same idempotency key creates exactly one order",
+    "why": "clients may retry on network failure; we must not double-charge",
+    "provenance": [
+      "docs/ADR-002.md:13",
+      "app/orders.py:4"
+    ],
+    "enforced_at": [
+      "app/orders.py:60"
+    ],
+    "covered_by_test": "tests\\test_orders.py::test_duplicate_submit_creates_one_record",
+    "surface": [
+      "app.orders.create_order",
+      "POST /orders"
+    ]
+  },
+  {
+    "id": "G3",
+    "statement": "every order write passes through validate_order()",
+    "why": "validate_order() is the single enforcement point for business rules",
+    "provenance": [
+      "docs/ADR-003.md:14",
+      "app/orders.py:9"
+    ],
+    "enforced_at": [
+      "app/orders.py:23"
+    ],
+    "covered_by_test": null,
+    "surface": [
+      "app.orders.validate_order",
+      "POST /orders",
+      "POST /orders/bulk"
+    ]
+  },
+  {
+    "id": "G4",
+    "statement": "catalog reads are served from cache; DB hit rate < 20% once warm",
+    "why": "the catalog changes infrequently; hitting the DB on every read adds latency",
+    "provenance": [
+      "docs/ADR-004.md:14",
+      "app/cache.py:4"
+    ],
+    "enforced_at": [
+      "app/cache.py:20"
+    ],
+    "covered_by_test": null,
+    "surface": [
+      "app.cache.get_item",
+      "GET /catalog"
+    ]
+  }
+]

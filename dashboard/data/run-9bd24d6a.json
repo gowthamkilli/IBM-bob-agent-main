@@ -1,0 +1,17 @@
+[
+  {
+    "lane_id": "L1",
+    "candidate_id": "C1",
+    "test_path": "test_witness_lane_L1.py",
+    "expected_failure": {
+      "exception": "AssertionError",
+      "assert_substring": ""
+    },
+    "base_result": "PASS",
+    "head_result": "FAIL",
+    "verdict": "PROVEN",
+    "stderr_excerpt": "ror: G1 VIOLATED: ceiling is 5, ADR-001 requires ceiling=1 (docs/ADR-001.md:14). A weakened ceiling defeats the guarantee.\nE   assert 5 == 1\n=========================== short test summary info ===========================\nFAILED test_witness_lane_L1.py::test_g1_ceiling_is_one - AssertionError: G1 V...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed in 0.07s\n",
+    "elapsed_s": 1.0469999999913853,
+    "death_note": "Proof test selected for guarantee G1"
+  }
+]
